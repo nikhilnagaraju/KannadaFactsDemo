@@ -1,0 +1,33 @@
+<div fxLayout='row' fxLayoutAlign="center center" class="card-container">
+  <mat-card fxFlex='60' fxFlex.sm='75' fxFlex.xs='90' class="facts-card">
+    <h1>Kannada Facts API</h1>
+    <p>A JSON API to fetch facts about Karnataka and Kannada.</p>
+    <hr>
+    <mat-button-toggle-group color="primary" class="toggle-btn-grp" aria-label="API type" [value]="apiType"
+      (change)="toggleAPItype($event.source.value)">
+      <mat-button-toggle value="singleton">Singleton</mat-button-toggle>
+      <mat-button-toggle value="randomarray">Multiple</mat-button-toggle>
+    </mat-button-toggle-group>
+    <form [formGroup]="form" *ngIf="!isSingleton">
+      <mat-form-field appearance="outline">
+        <mat-label>No. of facts</mat-label>
+        <input matInput formControlName="count" type="number" placeholder="10">
+      </mat-form-field>
+      <mat-error *ngIf="form.invalid">
+        Valid number between 1 and 20 is required
+      </mat-error>
+    </form>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="!isSingleton && form.invalid" (click)="getFact()">
+        Get Fact</button>
+    </div>
+    <div class="json-markup">
+      <p>JSON response:</p>
+      <pre>{{jsonResponse | json}}</pre>
+    </div>
+  </mat-card>
+</div>
+<div class="footer">
+  <p>Find the documentation or Fork API on github <a
+      href="https://github.com/nikhilnagaraju/Random-Kan-Fact-API#random-kannada-fact-api">here</a>.</p>
+</div>
