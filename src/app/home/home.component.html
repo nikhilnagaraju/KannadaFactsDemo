@@ -21,9 +21,14 @@
       <button mat-raised-button color="primary" [disabled]="!isSingleton && form.invalid" (click)="getFact()">
         Get Fact</button>
     </div>
-    <div class="json-markup">
-      <p>JSON response:</p>
-      <pre>{{jsonResponse | json}}</pre>
+    <div *ngIf="!showProgress" class="json-markup">
+      <p *ngIf="!apiError">JSON response:</p>
+      <p *ngIf="apiError">API Error, response:</p>
+      <pre [ngClass]="{'error-response': apiError}">{{jsonResponse | json}}</pre>
+    </div>
+    <div *ngIf="showProgress" fxLayout="row" fxLayoutAlign="space-around center" class="spinner-container">
+      <mat-progress-spinner [color]="primary" [diameter]="50" [mode]="'indeterminate'">
+      </mat-progress-spinner>
     </div>
   </mat-card>
 </div>

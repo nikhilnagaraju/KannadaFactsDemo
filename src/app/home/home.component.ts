@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
+import { Observable } from "rxjs";
+
 import { ApiService } from "../services/api.service";
 
 @Component({
@@ -11,6 +14,8 @@ export class HomeComponent implements OnInit {
   isSingleton: boolean;
   apiType: string;
   form: FormGroup;
+  showProgress: boolean;
+  apiError: boolean;
 
   constructor(private api: ApiService, private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -21,6 +26,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.apiType = "singleton";
     this.isSingleton = true;
+    this.showProgress = false;
   }
 
   jsonResponse = {
@@ -38,7 +44,9 @@ export class HomeComponent implements OnInit {
   };
 
   getFact() {
-    let apiSubscription: any;
+    this.apiError = false;
+    this.showProgress = true;
+    let apiSubscription: Observable<any>;
     if (this.isSingleton) {
       apiSubscription = this.api.getSingletonFact;
     } else {
@@ -52,6 +60,13 @@ export class HomeComponent implements OnInit {
         imgurl: string;
       }) => {
         this.jsonResponse = resp;
+        this.showProgress = false;
+        this.apiError = false;
+      },
+      (er) => {
+        this.showProgress = false;
+        this.apiError = true;
+        this.jsonResponse = er.error;
       }
     );
   }
