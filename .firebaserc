@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "kannadafactsapi": {
+      "hosting": {
+        "KannadaFactsDemo": [
+          "kannadafactsapi"
+        ]
+      }
+    }
+  }
+}

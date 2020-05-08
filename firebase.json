@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "KannadaFactsDemo",
+      "public": "dist/KannadaFactsDemo",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
