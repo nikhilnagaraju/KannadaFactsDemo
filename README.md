@@ -1,7 +1,7 @@
 # KannadaFactsDemo
 
 
-Demo frontend for (Random Kannada facts API)[https://github.com/nikhilnagaraju/Random-Kan-Fact-API] hosted on firebase https://kannadafactsapi.firebaseapp.com
+Demo frontend for [Random Kannada facts API](https://github.com/nikhilnagaraju/Random-Kan-Fact-API) hosted on firebase https://kannadafactsapi.firebaseapp.com
 
 ## Development server
 
